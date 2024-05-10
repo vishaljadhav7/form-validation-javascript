@@ -13,39 +13,46 @@ function isPasswordValid(password){
   return regex.test(password);
 }
 
+function setError( id, errorMsg ){
+   let newId = `#${id}` ;
+  const ele = document.getElementById(id);
+  console.log(ele)
+  const errorEle = ele.querySelector('.error-msg');
+  console.log(errorEle)
+  errorEle.innerHTML = errorMsg;
+}
+
 
 
 
 function formValidate(){
    
-//    console.log(
-//      myFrom['user'].value,
-//      myFrom['email'].value,
-//      myFrom['confirm-password'].value,
-//    )  
-     let userName = myFrom['user'].value;
+     const userName = myFrom['user'].value;
      
       if(userName.length < 5){
-        console.log("username is short")
-
+        // console.log("username is short")
+        setError('user', "username is short") 
       }
 
-     let email = myFrom['email'].value;
+      const email = myFrom['email'].value;
      
       if(isValidEmail(email) === false){
-         console.log('please enter a valid email') 
+        //  console.log('please enter a valid email')
+         setError('email',"please enter a valid email"); 
       }
 
-     let password = myFrom['password'].value;
+      const password = myFrom['password'].value;
     
       if(isPasswordValid(password) === false){
-        console.log('please enter a valid password')
+        // console.log('please enter a valid password')
+        setError('password', "please enter a valid password");
       }
 
-     let confirmPassword = myFrom['confirm-password'].value;
+      const confirmPassword = myFrom['confirm-password'].value;
      
      if(!(password === confirmPassword)){
-        console.log("password doesn't match");
+        // console.log("password doesn't match");
+        setError('confirm-password',"password doesn't match")
      }
 
 }
